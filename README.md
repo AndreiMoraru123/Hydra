@@ -1,5 +1,5 @@
 # Hydra
-##Multi task depth and segmentation estimates for computer vision in self driving cars
+## Multi task depth and segmentation estimation for computer vision in self driving cars
 
 #### Personal implementation of the ***Real-Time Joint Semantic Segmentation and Depth Estimation Using
 Asymmetric Annotations***
@@ -27,14 +27,23 @@ As you can see, the model's predictions are lacking in lower visibility scenario
 
 
 @misc{https://doi.org/10.48550/arxiv.1809.04766,
+
   doi = {10.48550/ARXIV.1809.04766},
+  
   url = {https://arxiv.org/abs/1809.04766},
+  
   author = {Nekrasov, Vladimir and Dharmasiri, Thanuja and Spek, Andrew and Drummond, Tom and Shen, Chunhua and Reid, Ian},
+  
   keywords = {Computer Vision and Pattern Recognition (cs.CV), FOS: Computer and information sciences, FOS: Computer and information sciences},
+  
   title = {Real-Time Joint Semantic Segmentation and Depth Estimation Using Asymmetric Annotations},
+  
   publisher = {arXiv},
+  
   year = {2018},
+  
   copyright = {arXiv.org perpetual, non-exclusive license}
+  
 }
 
 
