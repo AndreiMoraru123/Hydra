@@ -25,6 +25,7 @@ Personal implementation of the <em> Real-Time Joint Semantic Segmentation and De
 As you can see, the model's predictions are lacking in lower visibility scenarios
 
 
+```
 @misc{https://doi.org/10.48550/arxiv.1809.04766,
   doi = {10.48550/ARXIV.1809.04766},
   url = {https://arxiv.org/abs/1809.04766},
@@ -35,6 +36,6 @@ As you can see, the model's predictions are lacking in lower visibility scenario
   year = {2018},
   copyright = {arXiv.org perpetual, non-exclusive license}
 }
-
+```
 
 ![hail_hydra](https://user-images.githubusercontent.com/81184255/193479546-9218d405-7ade-45c7-bfbf-833ee16ebf4e.gif)
