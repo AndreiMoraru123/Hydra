@@ -54,6 +54,61 @@ def separable_conv(in_channels, hidden_dim, out_channels, stride):
     )
 ```
 
+# Building the Lightweight RefineNet Decoder
+
+![image](https://user-images.githubusercontent.com/81184255/194060273-f525d0bc-5043-443d-ba74-baff3d2980dc.png)
+
+```python
+# RefineNet decoder
+l8 = self.conv8(l8)
+l7 = self.conv7(l7)
+l7 = self.relu(l8 + l7)
+l7 = self.crp4(l7)
+l7 = self.conv_adapt4(l7)
+l7 = nn.Upsample(size=l6.size()[2:], mode='bilinear', align_corners=False)(l7)
+
+l6 = self.conv6(l6)
+l5 = self.conv5(l5)
+l5 = self.relu(l6 + l5 + l7)
+l5 = self.crp3(l5)
+l5 = self.conv_adapt3(l5)
+l5 = nn.Upsample(size=l4.size()[2:], mode='bilinear', align_corners=False)(l5)
+
+l4 = self.conv4(l4)
+l4 = self.relu(l5 + l4)
+l4 = self.crp2(l4)
+l4 = self.conv_adapt2(l4)
+l4 = nn.Upsample(size=l3.size()[2:], mode='bilinear', align_corners=False)(l4)
+
+l3 = self.conv3(l3)
+l3 = self.relu(l3 + l4)
+l3 = self.crp1(l3)
+```
+![image](https://user-images.githubusercontent.com/81184255/194060637-acf1fed2-ab38-4edf-8767-107296912daf.png)
+
+https://arxiv.org/pdf/1809.04766.pdf
+
+```python
+class ChainedResidualPooling(nn.Module):
+    def __init__(self, in_channels, out_channels, n_stages, groups=False):
+        super().__init__()
+        self.n_stages = n_stages
+        for i in range(self.n_stages):
+            setattr(self, '{}_{}'.format(i + 1, 'outvar_dimred'),
+                    nn.Conv2d(in_channels if (i == 0) else out_channels,
+                              out_channels, kernel_size=1, stride=1,
+                              bias=False, groups=in_channels if groups else 1))
+
+        self.max_pool = nn.MaxPool2d(kernel_size=5, stride=1, padding=2)
+        
+    def forward(self, x):
+        top = x
+        for i in range(self.n_stages):
+            top = self.max_pool(top)
+            top = getattr(self, '{}_{}'.format(i + 1, 'outvar_dimred'))(top)
+            x = top + x
+        return x
+```
 
 ```
 @misc{https://doi.org/10.48550/arxiv.1809.04766,
