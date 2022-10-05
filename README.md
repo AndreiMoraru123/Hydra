@@ -24,6 +24,11 @@ My version of the <em> Real-Time Joint Semantic Segmentation and Depth Estimatio
 
 As you can see, the model's predictions are lacking in lower visibility scenarios
 
+<ul>
+<li>Line 1</li>
+<li>Line 2</li>
+</ul>
+
 
 ```
 @misc{https://doi.org/10.48550/arxiv.1809.04766,
