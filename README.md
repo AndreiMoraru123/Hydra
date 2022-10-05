@@ -24,10 +24,33 @@ My version of the <em> Real-Time Joint Semantic Segmentation and Depth Estimatio
 
 As you can see, the model's predictions are lacking in lower visibility scenarios
 
-<ul>
-<li>Line 1</li>
-<li>Line 2</li>
-</ul>
+# Building the MobileNetV2 encoder: The Inverted Residual Block
+
+![image](https://user-images.githubusercontent.com/81184255/194058410-15522cc5-f41d-47dd-b471-081527d5b0e5.png)
+
+
+```
+# (Inverted) separable convolutions
+    @staticmethod
+    def separable_conv(in_channels, hidden_dim, out_channels, stride):
+        return nn.Sequential(
+            #  1x1 point-wise convolution
+            nn.Sequential(
+                nn.Conv2d(in_channels, hidden_dim, kernel_size=1, stride=1, padding=0, groups=1, bias=False),
+                nn.BatchNorm2d(hidden_dim, affine=True, eps=1e-5, momentum=0.1),
+                nn.ReLU6(inplace=True)),
+            # 3x3 depth-wise convolution
+            nn.Sequential(
+                nn.Conv2d(hidden_dim, hidden_dim, kernel_size=3, stride=stride, padding=1, groups=hidden_dim,
+                          bias=False),
+                nn.BatchNorm2d(hidden_dim, affine=True, eps=1e-5, momentum=0.1),
+                nn.ReLU6(inplace=True)),
+            # 1x1 point-wise , no activation here
+            nn.Sequential(
+                nn.Conv2d(hidden_dim, out_channels, kernel_size=1, stride=1, padding=0, groups=1, bias=False),
+                nn.BatchNorm2d(out_channels, affine=True, eps=1e-5, momentum=0.1))
+        )
+```
 
 
 ```
