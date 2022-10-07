@@ -54,6 +54,27 @@ def separable_conv(in_channels, hidden_dim, out_channels, stride):
     )
 ```
 
+```python
+class InvertedResidualBlock(nn.Module):
+    """https://arxiv.org/abs/1801.04381"""
+
+    def __init__(self, in_channels, out_channels, expand_ratio, stride=1):
+        super().__init__()
+        self.stride = stride
+        hidden_dim = in_channels * expand_ratio
+        # Boolean condition for Residual Block
+        self.use_res_connect = self.stride == 1 and in_channels == out_channels
+        self.output = self.separable_conv(in_channels=in_channels, hidden_dim=hidden_dim, out_channels=out_channels,
+                                          stride=self.stride)
+
+    def forward(self, x):
+        if self.use_res_connect:
+	    # add residual
+            return x + self.output(x)
+        else:
+            return self.output(x)
+```
+
 # Building the Lightweight RefineNet Decoder
 
 ![image](https://user-images.githubusercontent.com/81184255/194060273-f525d0bc-5043-443d-ba74-baff3d2980dc.png)
