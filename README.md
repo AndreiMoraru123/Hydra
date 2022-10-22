@@ -17,6 +17,8 @@ Original Repo: https://github.com/DrSleep/multi-task-refinenet
 
 ![rainy](https://user-images.githubusercontent.com/81184255/193479381-82ad5f3e-3079-4381-a16b-7c4feea3ae25.gif)
 
+<img src="https://user-images.githubusercontent.com/81184255/193479381-82ad5f3e-3079-4381-a16b-7c4feea3ae25.gif" width="250" height="250"/>
+
 ### Nightfall:
 
 ![night](https://user-images.githubusercontent.com/81184255/193479395-499dccd1-b904-4205-b1b1-0dfaf81fd1f2.gif)
