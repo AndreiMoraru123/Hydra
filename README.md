@@ -9,7 +9,7 @@ Original Repo: https://github.com/DrSleep/multi-task-refinenet
 
 ### Results:
 
-#### Sunny:
+### Sunny:
 
 ![sunny](https://user-images.githubusercontent.com/81184255/193479360-faed9ca1-c54a-4b06-969b-8356a237fb56.gif)
 
