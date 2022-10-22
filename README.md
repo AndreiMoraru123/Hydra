@@ -11,7 +11,7 @@ Original Repo: https://github.com/DrSleep/multi-task-refinenet
 
 ### Sunny:
 
-![sunny](https://user-images.githubusercontent.com/81184255/193479360-faed9ca1-c54a-4b06-969b-8356a237fb56.gif)
+<img src="https://user-images.githubusercontent.com/81184255/193479360-faed9ca1-c54a-4b06-969b-8356a237fb56.gif" width="1000" height="200"/>
 
 ### Rainy:
 
@@ -19,7 +19,7 @@ Original Repo: https://github.com/DrSleep/multi-task-refinenet
 
 ### Nightfall:
 
-![night](https://user-images.githubusercontent.com/81184255/193479395-499dccd1-b904-4205-b1b1-0dfaf81fd1f2.gif)
+<img src="https://user-images.githubusercontent.com/81184255/193479395-499dccd1-b904-4205-b1b1-0dfaf81fd1f2.gif" width="1000" height="200"/>
 
 ##### The model was pretrained using the KITTI dataset weights 
 
