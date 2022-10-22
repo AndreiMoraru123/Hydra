@@ -9,15 +9,15 @@ Original Repo: https://github.com/DrSleep/multi-task-refinenet
 
 ### Results:
 
-##### Sunny:
+#### Sunny:
 
 ![sunny](https://user-images.githubusercontent.com/81184255/193479360-faed9ca1-c54a-4b06-969b-8356a237fb56.gif)
 
-#### Rainy:
+### Rainy:
 
 ![rainy](https://user-images.githubusercontent.com/81184255/193479381-82ad5f3e-3079-4381-a16b-7c4feea3ae25.gif)
 
-#### Nightfall:
+### Nightfall:
 
 ![night](https://user-images.githubusercontent.com/81184255/193479395-499dccd1-b904-4205-b1b1-0dfaf81fd1f2.gif)
 
