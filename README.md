@@ -21,7 +21,7 @@ Original Repo: https://github.com/DrSleep/multi-task-refinenet
 
 <img src="https://user-images.githubusercontent.com/81184255/193479395-499dccd1-b904-4205-b1b1-0dfaf81fd1f2.gif" width="1000" height="150"/>
 
-##### The model was pretrained using the KITTI dataset weights 
+##### The model was pretrained using the paper's KITTI weights 
 
 As you can see, the model's predictions are lacking in lower visibility scenarios
 
@@ -145,4 +145,5 @@ class ChainedResidualPooling(nn.Module):
 }
 ```
 
-![hail_hydra](https://user-images.githubusercontent.com/81184255/193479546-9218d405-7ade-45c7-bfbf-833ee16ebf4e.gif)
+<img align="right" src="https://user-images.githubusercontent.com/81184255/193479546-9218d405-7ade-45c7-bfbf-833ee16ebf4e.gif" />
+
