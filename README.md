@@ -27,7 +27,7 @@ As you can see, the model's predictions are lacking in lower visibility scenario
 
 # Building the MobileNetV2 encoder: The Inverted Residual Block
 
-![image](https://user-images.githubusercontent.com/81184255/194058410-15522cc5-f41d-47dd-b471-081527d5b0e5.png)
+<img align="left" src="https://user-images.githubusercontent.com/81184255/194058410-15522cc5-f41d-47dd-b471-081527d5b0e5.png" />
 
 https://arxiv.org/pdf/1801.04381.pdf
 
