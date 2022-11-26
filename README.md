@@ -132,6 +132,8 @@ class ChainedResidualPooling(nn.Module):
         return x
 ```
 
+<img align="right" src="https://user-images.githubusercontent.com/81184255/193479546-9218d405-7ade-45c7-bfbf-833ee16ebf4e.gif" />
+
 ```bibtex
 @misc{https://doi.org/10.48550/arxiv.1809.04766,
   doi = {10.48550/ARXIV.1809.04766},
@@ -144,6 +146,4 @@ class ChainedResidualPooling(nn.Module):
   copyright = {arXiv.org perpetual, non-exclusive license}
 }
 ```
-
-<img align="right" src="https://user-images.githubusercontent.com/81184255/193479546-9218d405-7ade-45c7-bfbf-833ee16ebf4e.gif" />
 
