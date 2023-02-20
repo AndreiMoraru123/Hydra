@@ -1,5 +1,5 @@
 # Hydra
-## Multi task depth and segmentation estimation for computer vision in self driving cars
+## Multi task depth and segmentation estimation for self driving cars
 
 Based on the [Real-Time Joint Semantic Segmentation and Depth Estimation Using Asymmetric Annotations](https://arxiv.org/abs/1809.04766) </em> paper
 
