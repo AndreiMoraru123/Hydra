@@ -128,8 +128,9 @@ class ChainedResidualPooling(nn.Module):
             x = top + x
         return x
 ```
-
-<img align="left" src="https://user-images.githubusercontent.com/81184255/193479546-9218d405-7ade-45c7-bfbf-833ee16ebf4e.gif" width = "300" height="220" />
+<p align="center">
+	<img src="https://user-images.githubusercontent.com/81184255/193479546-9218d405-7ade-45c7-bfbf-833ee16ebf4e.gif" width = "300" height="220" />
+</p>
 
 ```bibtex
 @misc{https://doi.org/10.48550/arxiv.1809.04766,
