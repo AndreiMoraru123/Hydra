@@ -1,4 +1,4 @@
-## Multi task depth & segmentation estimation for vision in self driving cars
+# Multi task depth & segmentation estimation
 
 #### [Real-Time Joint Semantic Segmentation and Depth Estimation Using Asymmetric Annotations](https://arxiv.org/abs/1809.04766) implementation
 
