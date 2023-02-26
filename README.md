@@ -28,7 +28,7 @@ Original Repo: [DrSleeo](https://github.com/DrSleep/multi-task-refinenet)
 
 As you can see, the model's predictions are lacking in lower visibility scenarios
 
-# Building the MobileNetV2 encoder: The Inverted Residual Block
+## Building the MobileNetV2 Encoder
 
 <img align="left" src="https://user-images.githubusercontent.com/81184255/194058410-15522cc5-f41d-47dd-b471-081527d5b0e5.png" />
 
@@ -79,7 +79,7 @@ class InvertedResidualBlock(nn.Module):
             return self.output(x)
 ```
 
-# Building the Lightweight RefineNet Decoder
+## Building the Lightweight RefineNet Decoder
 
 ![image](https://user-images.githubusercontent.com/81184255/194060273-f525d0bc-5043-443d-ba74-baff3d2980dc.png)
 
