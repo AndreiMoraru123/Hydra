@@ -1,11 +1,15 @@
 # Hydra
 ## Multi task depth & segmentation estimation for vision in self driving cars
 
-Based on the [Real-Time Joint Semantic Segmentation and Depth Estimation Using Asymmetric Annotations](https://arxiv.org/abs/1809.04766) </em> paper
+[Real-Time Joint Semantic Segmentation and Depth Estimation Using Asymmetric Annotations](https://arxiv.org/abs/1809.04766) paper implementation
 
 ![image](https://user-images.githubusercontent.com/81184255/193479326-8e8728d1-57cf-4f7f-8a06-1a7efe167b76.png)
 
-Original Repo: https://github.com/DrSleep/multi-task-refinenet
+Original Repo: [DrSleeo](https://github.com/DrSleep/multi-task-refinenet)
+
+<p align="center">
+  <img src="https://thumbs.gfycat.com/AccurateShadyKinkajou-size_restricted.gif" alt="UNet" width="800" height="300">
+</p>
 
 # Results:
 
