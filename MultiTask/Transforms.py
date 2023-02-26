@@ -1,24 +1,23 @@
 import numpy as np
-import torch
 import cv2
 
 
 class Scale(object):
 
     def __init__(self):
-        self.mean = np.array([0.485, 0.456, 0.406]).reshape(1,1,3) # add mean to image with 3rd color channel
-        self.std = np.array([0.229, 0.224, 0.225]).reshape(1,1,3) # add std to image with 3rd color channel
+        self.mean = np.array([0.485, 0.456, 0.406]).reshape(1, 1, 3)  # add mean to image with 3rd color channel
+        self.std = np.array([0.229, 0.224, 0.225]).reshape(1, 1, 3)  # add std to image with 3rd color channel
 
-    def __call__(self,image):
+    def __call__(self, image):
         image = image.astype(np.float32)
         image = image / 255.0
         image = (image - self.mean) / self.std
         return np.array(image)
 
+
 class Normalize(object):
 
     def __call__(self, image):
-
         image_copy = np.copy(image)
 
         image_copy = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
@@ -27,9 +26,10 @@ class Normalize(object):
 
         return image_copy
 
+
 class Resize(object):
 
-    def __init__(self, output_size = 100):
+    def __init__(self, output_size=100):
         assert isinstance(output_size, (int, tuple))
         self.output_size = output_size
 
@@ -49,6 +49,7 @@ class Resize(object):
         img = cv2.resize(image, (new_w, new_h))
 
         return img
+
 
 class ToTensor(object):
 

@@ -11,36 +11,10 @@ class HydraNet(nn.Module):
         # 6 segmentation classes, 1 depth
         self.num_classes = 6
 
-    def initialize_weights(self):
-        for m in self.modules():
-            if isinstance(m, nn.Conv2d):
-                # Kaiming He initialization
-                nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
-                if m.bias is not None:
-                    nn.init.constant_(m.bias, 0)
-            elif isinstance(m, nn.BatchNorm2d):
-                nn.init.constant_(m.weight, 1)
-                nn.init.constant_(m.bias, 0)
-            elif isinstance(m, nn.Linear):
-                nn.init.normal_(m.weight, 0, 0.01)
-                nn.init.constant_(m.bias, 0)
+        #######################
+        # MobileNetV2 Encoder #
+        #######################
 
-    def _make_layer(self, config):
-        # t, c, n, s
-        (expand_ratio, out_channels, num_blocks, stride) = config
-        layer = []
-        for _ in range(num_blocks):
-            layer.append(
-                InvertedResidualBlock(in_channels=self.in_channels,
-                                      out_channels=out_channels,
-                                      stride=stride if _ == 0 else 1,
-                                      expand_ratio=expand_ratio)
-            )
-            self.in_channels = out_channels
-            # stride = 1
-        return nn.Sequential(*layer)
-
-    def mobilenet_encoder(self):
         CONFIG = [  # match all keys in the paper
             # t, c, n, s
             [1, 16, 1, 1],
@@ -74,11 +48,10 @@ class HydraNet(nn.Module):
         # 2x2x1607
         self.layer8 = self._make_layer(CONFIG[6])
 
-    def _make_crp(self, in_channels, out_channels, n_stages, groups=False):
-        layers = [ChainedResidualPooling(in_channels, out_channels, n_stages, groups=groups)]
-        return nn.Sequential(*layers)
+        #####################
+        # RefineNet Decoder #
+        #####################
 
-    def refinenet_decoder(self):
         self.conv8 = nn.Conv2d(320, 256, kernel_size=1, stride=1, padding=0, groups=1, bias=False)
         self.conv7 = nn.Conv2d(160, 256, kernel_size=1, stride=1, padding=0, groups=1, bias=False)
         self.conv6 = nn.Conv2d(96, 256, kernel_size=1, stride=1, padding=0, groups=1, bias=False)
@@ -107,6 +80,45 @@ class HydraNet(nn.Module):
             # normals
             self.pre_norm = nn.Conv2d(256, 256, kernel_size=1, stride=1, padding=0, bias=False, groups=256)
             self.norm = nn.Conv2d(256, 3, kernel_size=1, stride=1, padding=0, bias=True, dilation=1)
+
+    def initialize_weights(self):
+        for m in self.modules():
+            if isinstance(m, nn.Conv2d):
+                nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
+                if m.bias is not None:
+                    nn.init.constant_(m.bias, 0)
+            elif isinstance(m, nn.BatchNorm2d):
+                nn.init.constant_(m.weight, 1)
+                nn.init.constant_(m.bias, 0)
+            elif isinstance(m, nn.Linear):
+                nn.init.normal_(m.weight, 0, 0.01)
+                nn.init.constant_(m.bias, 0)
+
+    def _make_layer(self, config):
+        # t, c, n, s
+        (expand_ratio, out_channels, num_blocks, stride) = config
+        layer = []
+        for _ in range(num_blocks):
+            layer.append(
+                InvertedResidualBlock(in_channels=self.in_channels,
+                                      out_channels=out_channels,
+                                      stride=stride if _ == 0 else 1,
+                                      expand_ratio=expand_ratio)
+            )
+            self.in_channels = out_channels
+            # stride = 1
+        return nn.Sequential(*layer)
+
+    def mobilenet_encoder(self):
+        pass
+
+    @staticmethod
+    def _make_crp(in_channels, out_channels, n_stages, groups=False):
+        layers = [ChainedResidualPooling(in_channels, out_channels, n_stages, groups=groups)]
+        return nn.Sequential(*layers)
+
+    def refinenet_decoder(self):
+        pass
 
     def forward(self, x):
         # MobileNet encoder
