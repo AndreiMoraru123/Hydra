@@ -125,7 +125,7 @@ class ChainedResidualPooling(nn.Module):
 
 <img src="https://user-images.githubusercontent.com/81184255/193479395-499dccd1-b904-4205-b1b1-0dfaf81fd1f2.gif" width="1000" height="150"/>
 
-##### The model was pretrained using the paper's KITTI weights 
+#### The model was pretrained using the paper's KITTI weights 
 
 #### As we can see, the model's predictions are lacking in lower visibility scenarios
 
