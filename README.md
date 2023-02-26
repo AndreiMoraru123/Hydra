@@ -7,7 +7,7 @@
 #### Original Repo: [DrSleep](https://github.com/DrSleep/multi-task-refinenet)
 
 <p align="center">
-  <img src="https://thumbs.gfycat.com/AccurateShadyKinkajou-size_restricted.gif" alt="KITTI" width="800" height="300">
+  <img src="https://thumbs.gfycat.com/DishonestCourteousArawana-size_restricted.gif" alt="KITTI" width="1000" height="150">
 </p>
 
 # Results:
