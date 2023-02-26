@@ -12,11 +12,10 @@
 
 ## Building the [MobileNetV2 Encoder](https://arxiv.org/pdf/1801.04381.pdf)
 
-<img align="left" src="https://user-images.githubusercontent.com/81184255/194058410-15522cc5-f41d-47dd-b471-081527d5b0e5.png" width = "400" height="650" />
+<img align="left" src="https://user-images.githubusercontent.com/81184255/194058410-15522cc5-f41d-47dd-b471-081527d5b0e5.png" width = "390" height="650" />
 
 
 ```python
-@staticmethod
 def separable_conv(in_channels, hidden_dim,
                    out_channels, stride):
      return nn.Sequential(
@@ -29,7 +28,7 @@ def separable_conv(in_channels, hidden_dim,
              nn.BatchNorm2d(hidden_dim, affine=True,
                             eps=1e-5, momentum=0.1),
              nn.ReLU6(inplace=True)),
-         # 3x3 depth-wise convolution
+         # 3x3 depth-wise convolution, note "groups"
          nn.Sequential(
              nn.Conv2d(hidden_dim, hidden_dim,
                        kernel_size=3, stride=stride,
