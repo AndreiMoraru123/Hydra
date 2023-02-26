@@ -38,7 +38,7 @@ def separable_conv(in_channels, hidden_dim,
                             eps=1e-5, momentum=0.1),
              nn.ReLU6(inplace=True)),
          # 1x1 point-wise , no activation here
-             nn.Sequential(
+         nn.Sequential(
              nn.Conv2d(hidden_dim, out_channels,
                        kernel_size=1, stride=1,
                        padding=0, groups=1,
