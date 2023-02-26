@@ -111,16 +111,10 @@ class HydraNet(nn.Module):
             # stride = 1
         return nn.Sequential(*layer)
 
-    def mobilenet_encoder(self):
-        pass
-
     @staticmethod
     def _make_crp(in_channels, out_channels, n_stages, groups=False):
         layers = [ChainedResidualPooling(in_channels, out_channels, n_stages, groups=groups)]
         return nn.Sequential(*layers)
-
-    def refinenet_decoder(self):
-        pass
 
     def forward(self, x):
         # MobileNet encoder
