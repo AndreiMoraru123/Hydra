@@ -4,11 +4,13 @@ from CRP import ChainedResidualPooling
 
 
 class HydraNet(nn.Module):
+    """https://arxiv.org/abs/1809.04766"""
+
     def __init__(self):
         super().__init__()
         # two tasks, two heads
         self.num_tasks = 2
-        # 6 segmentation classes, 1 depth
+        # 6 classes for segmentation
         self.num_classes = 6
 
         #######################

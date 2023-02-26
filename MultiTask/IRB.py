@@ -7,11 +7,13 @@ class InvertedResidualBlock(nn.Module):
     def __init__(self, in_channels, out_channels, expand_ratio, stride=1):
         super().__init__()
         self.stride = stride
-        hidden_dim = in_channels * expand_ratio
+        self.hidden_dim = in_channels * expand_ratio
+        self.in_channels = in_channels
+        self.out_channels = out_channels
         # Boolean condition for Residual Block
-        self.use_res_connect = self.stride == 1 and in_channels == out_channels
-        self.output = self.separable_conv(in_channels=in_channels, hidden_dim=hidden_dim, out_channels=out_channels,
-                                          stride=self.stride)
+        self.use_res_connect = self.stride == 1 and self.in_channels == self.out_channels
+        self.output = self.separable_conv(in_channels=self.in_channels, hidden_dim=self.hidden_dim,
+                                          out_channels=self.out_channels, stride=self.stride)
 
     # (Inverted) separable convolutions
     @staticmethod
@@ -24,8 +26,7 @@ class InvertedResidualBlock(nn.Module):
                 nn.ReLU6(inplace=True)),
             # 3x3 depth-wise convolution
             nn.Sequential(
-                nn.Conv2d(hidden_dim, hidden_dim, kernel_size=3, stride=stride, padding=1, groups=hidden_dim,
-                          bias=False),
+                nn.Conv2d(hidden_dim, hidden_dim, kernel_size=3, stride=stride, padding=1, groups=hidden_dim),
                 nn.BatchNorm2d(hidden_dim, affine=True, eps=1e-5, momentum=0.1),
                 nn.ReLU6(inplace=True)),
             # 1x1 point-wise , no activation here
