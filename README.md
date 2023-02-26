@@ -10,18 +10,6 @@
 
 ### Original Repo: [DrSleep](https://github.com/DrSleep/multi-task-refinenet)
 
-## Some more examples:
-
-<img src="https://user-images.githubusercontent.com/81184255/193479360-faed9ca1-c54a-4b06-969b-8356a237fb56.gif" width="1000" height="150"/>
-
-<img src="https://user-images.githubusercontent.com/81184255/193479381-82ad5f3e-3079-4381-a16b-7c4feea3ae25.gif" width="1000" height="150"/>
-
-<img src="https://user-images.githubusercontent.com/81184255/193479395-499dccd1-b904-4205-b1b1-0dfaf81fd1f2.gif" width="1000" height="150"/>
-
-##### The model was pretrained using the paper's KITTI weights 
-
-As you can see, the model's predictions are lacking in lower visibility scenarios
-
 ## Building the MobileNetV2 Encoder
 
 <img align="left" src="https://user-images.githubusercontent.com/81184255/194058410-15522cc5-f41d-47dd-b471-081527d5b0e5.png" />
@@ -128,6 +116,19 @@ class ChainedResidualPooling(nn.Module):
             x = top + x
         return x
 ```
+
+## Some more examples:
+
+<img src="https://user-images.githubusercontent.com/81184255/193479360-faed9ca1-c54a-4b06-969b-8356a237fb56.gif" width="1000" height="150"/>
+
+<img src="https://user-images.githubusercontent.com/81184255/193479381-82ad5f3e-3079-4381-a16b-7c4feea3ae25.gif" width="1000" height="150"/>
+
+<img src="https://user-images.githubusercontent.com/81184255/193479395-499dccd1-b904-4205-b1b1-0dfaf81fd1f2.gif" width="1000" height="150"/>
+
+##### The model was pretrained using the paper's KITTI weights 
+
+#### As we can see, the model's predictions are lacking in lower visibility scenarios
+
 <p align="center">
 	<img src="https://user-images.githubusercontent.com/81184255/193479546-9218d405-7ade-45c7-bfbf-833ee16ebf4e.gif" width = "400" height="300" />
 </p>
