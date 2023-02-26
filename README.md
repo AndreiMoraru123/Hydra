@@ -12,8 +12,11 @@
 
 ## Building the [MobileNetV2 Encoder](https://arxiv.org/pdf/1801.04381.pdf)
 
-<img align="left" src="https://user-images.githubusercontent.com/81184255/194058410-15522cc5-f41d-47dd-b471-081527d5b0e5.png" width = "390" height="640" />
+![mobilenet](https://user-images.githubusercontent.com/81184255/221435565-077fd4fc-7d48-400d-8950-508003a3e589.png)
 
+## Based on the Inverted Residual Block
+
+<img align="left" src="https://user-images.githubusercontent.com/81184255/194058410-15522cc5-f41d-47dd-b471-081527d5b0e5.png" width = "390" height="640" />
 
 ```python
 def separable_conv(in_channels, hidden_dim,
@@ -71,39 +74,13 @@ class InvertedResidualBlock(nn.Module):
             return self.output(x)
 ```
 
-## Building the Lightweight RefineNet Decoder
+## Building the [Lightweight RefineNet Decoder](https://arxiv.org/pdf/1810.03272.pdf)
 
 ![image](https://user-images.githubusercontent.com/81184255/194060273-f525d0bc-5043-443d-ba74-baff3d2980dc.png)
 
-```python
-# RefineNet decoder
-l8 = self.conv8(l8)
-l7 = self.conv7(l7)
-l7 = self.relu(l8 + l7)
-l7 = self.crp4(l7)
-l7 = self.conv_adapt4(l7)
-l7 = nn.Upsample(size=l6.size()[2:], mode='bilinear', align_corners=False)(l7)
+## Based on Chained Residual Pooling 
 
-l6 = self.conv6(l6)
-l5 = self.conv5(l5)
-l5 = self.relu(l6 + l5 + l7)
-l5 = self.crp3(l5)
-l5 = self.conv_adapt3(l5)
-l5 = nn.Upsample(size=l4.size()[2:], mode='bilinear', align_corners=False)(l5)
-
-l4 = self.conv4(l4)
-l4 = self.relu(l5 + l4)
-l4 = self.crp2(l4)
-l4 = self.conv_adapt2(l4)
-l4 = nn.Upsample(size=l3.size()[2:], mode='bilinear', align_corners=False)(l4)
-
-l3 = self.conv3(l3)
-l3 = self.relu(l3 + l4)
-l3 = self.crp1(l3)
-```
 ![image](https://user-images.githubusercontent.com/81184255/194060637-acf1fed2-ab38-4edf-8767-107296912daf.png)
-
-https://arxiv.org/pdf/1809.04766.pdf
 
 ```python
 class ChainedResidualPooling(nn.Module):
