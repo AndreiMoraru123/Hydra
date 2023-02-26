@@ -26,7 +26,7 @@ class InvertedResidualBlock(nn.Module):
                 nn.ReLU6(inplace=True)),
             # 3x3 depth-wise convolution
             nn.Sequential(
-                nn.Conv2d(hidden_dim, hidden_dim, kernel_size=3, stride=stride, padding=1, groups=hidden_dim),
+                nn.Conv2d(hidden_dim, hidden_dim, kernel_size=3, stride=stride, padding=1, groups=hidden_dim, bias=False),
                 nn.BatchNorm2d(hidden_dim, affine=True, eps=1e-5, momentum=0.1),
                 nn.ReLU6(inplace=True)),
             # 1x1 point-wise , no activation here

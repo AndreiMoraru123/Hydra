@@ -4,6 +4,7 @@ import cv2
 import time
 import imutils
 
+
 def write_video(video):
 
     frameNr = 0
