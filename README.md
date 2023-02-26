@@ -12,7 +12,7 @@
 
 ## Building the [MobileNetV2 Encoder](https://arxiv.org/pdf/1801.04381.pdf)
 
-<img align="left" src="https://user-images.githubusercontent.com/81184255/194058410-15522cc5-f41d-47dd-b471-081527d5b0e5.png" width = "390" height="650" />
+<img align="left" src="https://user-images.githubusercontent.com/81184255/194058410-15522cc5-f41d-47dd-b471-081527d5b0e5.png" width = "400" height="650" />
 
 
 ```python
