@@ -1,4 +1,4 @@
-# Multi task depth estimation & segmentation
+# Multi task depth estimation & image segmentation
 
 #### [Real-Time Joint Semantic Segmentation and Depth Estimation Using Asymmetric Annotations](https://arxiv.org/abs/1809.04766) implementation
 
