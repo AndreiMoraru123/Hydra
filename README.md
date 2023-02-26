@@ -129,7 +129,7 @@ class ChainedResidualPooling(nn.Module):
         return x
 ```
 <p align="center">
-	<img src="https://user-images.githubusercontent.com/81184255/193479546-9218d405-7ade-45c7-bfbf-833ee16ebf4e.gif" width = "300" height="220" />
+	<img src="https://user-images.githubusercontent.com/81184255/193479546-9218d405-7ade-45c7-bfbf-833ee16ebf4e.gif" width = "400" height="300" />
 </p>
 
 ```bibtex
