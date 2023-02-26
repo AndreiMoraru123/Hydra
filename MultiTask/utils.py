@@ -1,7 +1,6 @@
 import os
 from tqdm import tqdm
 import torch
-from torch.autograd.variable import Variable
 import numpy as np
 import matplotlib.cm as cm
 import matplotlib.colors as co
@@ -18,7 +17,7 @@ def prepare_img(img):
 
 def pipeline(model, img, CMAP, NUM_CLASSES):
     with torch.no_grad():
-        img_var = Variable(torch.from_numpy(prepare_img(img).transpose(2, 0, 1)[None]), requires_grad=False).float()
+        img_var = torch.from_numpy(prepare_img(img).transpose(2, 0, 1)[None]).float()
         if torch.cuda.is_available():
             img_var = img_var.cuda()
         depth, segm = model(img_var)
@@ -40,16 +39,23 @@ def depth_to_rgb(depth):
     return colormapped_im
 
 
-def predict_video(model, model_name, input_video_path, output_dir,
-                  target_width, target_height, CMAP, NUM_CLASSES):
+def predict_video(model, model_name, input_video_path, output_dir, CMAP, NUM_CLASSES):
     file_name = input_video_path.split(os.sep)[-1].split('.')[0]
     output_filename = f'{file_name}_{model_name}_output.avi'
     output_video_path = os.path.join(output_dir, *[output_filename])
 
     # handles for input output videos
     input_handle = cv2.VideoCapture(input_video_path)
+    # read first frame to get dimensions
+    ret, frame = input_handle.read()
+    if not ret:
+        raise Exception(f'Could not read frame from {input_video_path}')
+    # set target width and height
+    target_width = frame.shape[1]
+    target_height = frame.shape[0]
+    # create output video handle
     output_handle = cv2.VideoWriter(output_video_path, cv2.VideoWriter_fourcc(*'DIVX'),
-                                    30, (target_width, target_height))
+                                    30, (3 * target_width, target_height))
 
     # create progress bar
     num_frames = int(input_handle.get(cv2.CAP_PROP_FRAME_COUNT))
@@ -59,28 +65,11 @@ def predict_video(model, model_name, input_video_path, output_dir,
         ret, frame = input_handle.read()
         if ret:
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-
-            # # create torch tensor to give as input to model
-            # pt_image = preprocess(frame)
-            # pt_image = pt_image.to(device)
-            #
-            # # get model prediction and convert to corresponding color
-            # y_pred = torch.argmax(model(pt_image.unsqueeze(0)), dim=1).squeeze(0)
-            # predicted_labels = y_pred.cpu().detach().numpy()
-            # cm_labels = (train_id_to_color[predicted_labels]).astype(np.uint8)
-            #
-            # # overlay prediction over input frame
-            # overlay_image = cv2.addWeighted(frame, 1, cm_labels, 0.25, 0)
-            # overlay_image = cv2.cvtColor(overlay_image, cv2.COLOR_RGB2BGR)
-
             image = np.array(frame)
-
             depth, segm = pipeline(model, image, CMAP, NUM_CLASSES)
-
             # write output result and update progress
-            output_handle.write(cv2.cvtColor(cv2.hconcat([image, segm, depth_to_rgb(depth)]), cv2.COLOR_RGB2BGR))
+            output_handle.write(cv2.cvtColor(cv2.hconcat([image, segm, depth_to_rgb(depth)]), cv2.COLOR_BGR2RGB))
             pbar.update(1)
-
         else:
             break
 
