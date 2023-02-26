@@ -18,7 +18,9 @@ https://arxiv.org/pdf/1801.04381.pdf
 
 
 ```python
-def separable_conv(in_channels, hidden_dim, out_channels, stride):
+@staticmethod
+def separable_conv(in_channels, hidden_dim,
+                   out_channels, stride):
      return nn.Sequential(
          #  1x1 point-wise convolution
          nn.Sequential(
@@ -44,10 +46,10 @@ def separable_conv(in_channels, hidden_dim, out_channels, stride):
                        kernel_size=1, stride=1,
                        padding=0, groups=1,
                        bias=False),
-             nn.BatchNorm2d(out_channels, affine=True,
-                            eps=1e-5, momentum=0.1))
+             nn.BatchNorm2d(out_channels,
+                            affine=True, eps=1e-5,
+                            momentum=0.1))
     )
-
 
 ```
 
