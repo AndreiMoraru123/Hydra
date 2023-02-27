@@ -63,8 +63,8 @@ class InvertedResidualBlock(nn.Module):
         hidden_dim = in_channels * expand_ratio
         # Boolean condition for Residual Block
         self.use_res_connect = self.stride == 1 and in_channels == out_channels
-        self.output = self.separable_conv(in_channels=in_channels, hidden_dim=hidden_dim, out_channels=out_channels,
-                                          stride=self.stride)
+        self.output = self.separable_conv(in_channels=in_channels, hidden_dim=hidden_dim,
+					  out_channels=out_channels, stride=self.stride)
 
     def forward(self, x):
         if self.use_res_connect:
