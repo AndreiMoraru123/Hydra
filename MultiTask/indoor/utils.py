@@ -1,6 +1,3 @@
-import os
-import random
-from datetime import datetime
 import cv2
 import numpy as np
 import torch
@@ -157,10 +154,10 @@ def compute_iu(cm):
     Returns:
       IU vector (Tensor).
     """
-    pi = 0
-    gi = 0
-    ii = 0
-    denom = 0
+    # pi = 0
+    # gi = 0
+    # ii = 0
+    # denom = 0
     n_classes = cm.shape[0]
     # IU is between 0 and 1, hence any value larger than that can be safely ignored
     default_value = 2

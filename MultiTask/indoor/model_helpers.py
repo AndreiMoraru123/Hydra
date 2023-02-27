@@ -1,14 +1,9 @@
 import json
 import os
-import random
-from datetime import datetime
-from inspect import signature
-
 import logging
 import numpy as np
 import torch
-import torch.nn as nn
-import torch.nn.functional as F
+
 
 def make_list(x):
     """Returns the given input as a list."""
@@ -18,7 +13,8 @@ def make_list(x):
         return list(x)
     else:
         return [x]
-        
+
+
 def load_state_dict(model, state_dict, strict=False):
     if state_dict is None:
         return
@@ -42,13 +38,13 @@ class Saver:
     """Saver class for checkpointing the training progress."""
 
     def __init__(
-        self,
-        args,
-        ckpt_dir,
-        best_val=0,
-        condition=lambda x, y: x > y,
-        save_interval=100,
-        save_several_mode=any,
+            self,
+            args,
+            ckpt_dir,
+            best_val=0,
+            condition=lambda x, y: x > y,
+            save_interval=100,
+            save_several_mode=any,
     ):
         """
         Args:
